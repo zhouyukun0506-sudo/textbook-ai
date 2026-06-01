@@ -24,14 +24,14 @@ mac:
   # arch 由命令行 --x64/--arm64 控制,默认见 pack 脚本
 dmg:
   title: ${productName} ${version}
-# ---- Windows (完整支持 x86 / x64 / arm64) ----
-win:
-  target:
-    - target: nsis
-      arch:
-        - x64
-        - ia32
-        - arm64
+# ---- Windows (x64 为主, 兼容 ARM64 转译) ----
+     win:
+       target: nsis
+       artifactName: ${productName}-${version}-win-${arch}-setup.${ext}
+     nsis:
+       oneClick: false
+       allowToChangeInstallationDirectory: true
+       perMachine: false
   artifactName: ${productName}-${version}-win-${arch}-setup.${ext}
   # 若 build/icon.ico 存在则自动使用;否则回退到 Electron 默认图标
 nsis:
