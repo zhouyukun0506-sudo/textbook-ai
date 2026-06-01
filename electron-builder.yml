@@ -1,5 +1,6 @@
 appId: com.textbookai.app
 productName: TextbookAI
+publish: null
 directories:
   buildResources: build
   output: dist-release
