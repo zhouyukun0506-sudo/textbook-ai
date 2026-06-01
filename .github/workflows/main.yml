@@ -1,0 +1,48 @@
+```yaml
+     name: Build
+
+     on:
+       push:
+         branches: [master]
+         tags: ['v*']
+       workflow_dispatch:
+
+     jobs:
+       build-macos:
+         runs-on: macos-latest
+         steps:
+           - uses: actions/checkout@v4
+           - uses: actions/setup-node@v4
+             with:
+               node-version: 20
+               cache: npm
+           - run: npm ci
+           - run: npm run build
+           - run: npx electron-builder --mac --config electron-builder.yml
+           - uses: actions/upload-artifact@v4
+             with:
+               name: macOS
+               path: dist-release/*.dmg
+               retention-days: 30
+
+       build-windows:
+         runs-on: windows-latest
+         steps:
+           - uses: actions/checkout@v4
+           - uses: actions/setup-node@v4
+             with:
+               node-version: 20
+               cache: npm
+           - run: npm ci
+             env:
+               ELECTRON_MIRROR: https://npmmirror.com/mirrors/electron/
+           - run: npm run build
+           - run: npx electron-builder --win --x64 --config electron-builder.yml
+             env:
+               ELECTRON_MIRROR: https://npmmirror.com/mirrors/electron/
+           - uses: actions/upload-artifact@v4
+             with:
+               name: Windows-x64
+               path: dist-release/win-*/**/*.exe
+               retention-days: 30
+   ```
