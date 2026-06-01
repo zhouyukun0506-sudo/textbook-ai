@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+out/
+dist-release/
+.vite/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Temp files
+*.tmp
+*.bak
+electron.vite.config.*.mjs
+
+# Test data / user data (should never be committed)
+*.pdf
+*.md
+*.docx
+*.pptx
+*.xlsx

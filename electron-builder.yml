@@ -1,0 +1,38 @@
+appId: com.textbookai.app
+productName: TextbookAI
+directories:
+  buildResources: build
+  output: dist-release
+files:
+  - '!**/.vscode/*'
+  - '!src/*'
+  - '!electron.vite.config.{js,ts,mjs,cjs}'
+  - '!{.eslintrc,.prettierrc,tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+  - '!{README.md,LICENSE}'
+asarUnpack:
+  - resources/**
+# ---- macOS (第一版主目标) ----
+mac:
+  category: public.app-category.education
+  target:
+    - dmg
+    - zip
+  artifactName: ${productName}-${version}-${arch}.${ext}
+  # 同时产出 Intel(x64) 与 Apple Silicon(arm64),也可改成 universal
+  # arch 由命令行 --x64/--arm64 控制,默认见 pack 脚本
+dmg:
+  title: ${productName} ${version}
+# ---- Windows (预留兼容,后续直接可用) ----
+win:
+  target:
+    - nsis
+  artifactName: ${productName}-${version}-setup.${ext}
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  perMachine: false
+# ---- Linux (顺带保留) ----
+linux:
+  target:
+    - AppImage
+  category: Education

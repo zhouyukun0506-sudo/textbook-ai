@@ -1,0 +1,44 @@
+{
+  "name": "textbook-ai",
+  "version": "0.1.0",
+  "description": "AI 双语教材分析工具 — 用中文学习英文原版 PDF 教材",
+  "main": "./out/main/index.js",
+  "author": "textbook-ai",
+  "license": "MIT",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json",
+    "typecheck:web": "tsc --noEmit -p tsconfig.web.json",
+    "typecheck": "npm run typecheck:node && npm run typecheck:web",
+    "start": "electron-vite preview",
+    "pack:mac": "npm run build && electron-builder --mac --config electron-builder.yml",
+    "pack:win": "npm run build && electron-builder --win --config electron-builder.yml"
+  },
+  "dependencies": {
+    "katex": "^0.16.11",
+    "mammoth": "^1.12.0",
+    "mermaid": "^10.9.6",
+    "node-pptx-parser": "^1.0.1",
+    "pdfjs-dist": "^4.4.168",
+    "react-markdown": "^9.0.1",
+    "rehype-katex": "^7.0.1",
+    "remark-gfm": "^4.0.0",
+    "remark-math": "^6.0.0",
+    "tesseract.js": "^5.1.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "electron": "^31.1.0",
+    "electron-builder": "^24.13.3",
+    "electron-vite": "^2.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.5.2",
+    "vite": "^5.3.1"
+  }
+}
