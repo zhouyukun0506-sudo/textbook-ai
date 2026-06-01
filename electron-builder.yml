@@ -11,6 +11,7 @@ files:
   - '!{README.md,LICENSE}'
 asarUnpack:
   - resources/**
+  - '**/tessdata/**'
 # ---- macOS (第一版主目标) ----
 mac:
   category: public.app-category.education
@@ -22,11 +23,16 @@ mac:
   # arch 由命令行 --x64/--arm64 控制,默认见 pack 脚本
 dmg:
   title: ${productName} ${version}
-# ---- Windows (预留兼容,后续直接可用) ----
+# ---- Windows (完整支持 x86 / x64 / arm64) ----
 win:
   target:
-    - nsis
-  artifactName: ${productName}-${version}-setup.${ext}
+    - target: nsis
+      arch:
+        - x64
+        - ia32
+        - arm64
+  artifactName: ${productName}-${version}-win-${arch}-setup.${ext}
+  # 若 build/icon.ico 存在则自动使用;否则回退到 Electron 默认图标
 nsis:
   oneClick: false
   allowToChangeInstallationDirectory: true

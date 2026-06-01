@@ -1,6 +1,6 @@
 {
   "name": "textbook-ai",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "AI 双语教材分析工具 — 用中文学习英文原版 PDF 教材",
   "main": "./out/main/index.js",
   "author": "Ethan Chou",
@@ -13,7 +13,9 @@
     "typecheck": "npm run typecheck:node && npm run typecheck:web",
     "start": "electron-vite preview",
     "pack:mac": "npm run build && electron-builder --mac --config electron-builder.yml",
-    "pack:win": "npm run build && electron-builder --win --config electron-builder.yml"
+    "pack:win": "npm run build && electron-builder --win --x64 --ia32 --arm64 --config electron-builder.yml",
+    "pack:win:x64": "npm run build && electron-builder --win --x64 --config electron-builder.yml",
+    "pack:win:arm64": "npm run build && electron-builder --win --arm64 --config electron-builder.yml"
   },
   "dependencies": {
     "katex": "^0.16.11",

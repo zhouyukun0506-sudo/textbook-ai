@@ -7,12 +7,12 @@ import { loadPdf } from './pdfView'
 
 const OCR_SCALE = 2.2 // 栅格化倍率:越高越清晰但越慢,2~2.5 对扫描件较稳
 
-// Tesseract 资源从 CDN 加载(已在 index.html CSP 放行)。worker/wasm 走 jsDelivr,
-// 语言包走官方 tessdata。首次下载后浏览器缓存,后续离线可用。
+// Tesseract 资源已打包进 APP(public/tessdata/),安装后开箱即用,无需联网下载。
+// 开发时由 Vite dev server 提供;生产时随 renderer 输出目录打包。
 const TESS_OPTS = {
-  workerPath: 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.0/dist/worker.min.js',
-  corePath: 'https://cdn.jsdelivr.net/npm/tesseract.js-core@5.0.0',
-  langPath: 'https://tessdata.projectnaptha.com/4.0.0'
+  workerPath: './tessdata/worker.min.js',
+  corePath: './tessdata',
+  langPath: './tessdata'
 }
 
 /** 带超时的 Promise 包装 */

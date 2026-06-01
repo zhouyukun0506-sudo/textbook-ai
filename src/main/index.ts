@@ -50,7 +50,8 @@ function createWindow(): void {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false,
       contextIsolation: true,
-      nodeIntegration: false
+      nodeIntegration: false,
+      webSecurity: false // 允许 Tesseract.js 通过 file:// 加载本地 OCR 模型
     }
   })
 
