@@ -26,8 +26,11 @@ Thumbs.db
 electron.vite.config.*.mjs
 
 # Test data / user data (should never be committed)
-*.pdf
-*.md
-*.docx
-*.pptx
-*.xlsx
+# 用户上传的教材文件，放在项目根目录时避免误提交
+/*.pdf
+/*.docx
+/*.pptx
+/*.xlsx
+/*.epub
+
+# 项目文档不被忽略（README.md、CHANGELOG.md 等需要提交）
