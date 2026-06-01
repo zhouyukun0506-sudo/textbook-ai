@@ -1,4 +1,3 @@
-```yaml
      name: Build
 
      on:
@@ -45,4 +44,3 @@
                name: Windows-x64
                path: dist-release/win-*/**/*.exe
                retention-days: 30
-   ```
