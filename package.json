@@ -3,7 +3,7 @@
   "version": "0.10.2",
   "description": "AI 双语教材分析工具 — 用中文学习英文原版 PDF 教材",
   "main": "./out/main/index.js",
-  "author": "textbook-ai",
+  "author": "Ethan Chou",
   "license": "MIT",
   "scripts": {
     "dev": "electron-vite dev",
