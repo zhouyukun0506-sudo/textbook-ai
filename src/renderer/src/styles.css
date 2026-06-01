@@ -705,24 +705,39 @@ h3 {
 
 /* ============ 书架(明亮·优雅·紧凑)============ */
 /* 书架按学科分格,窄格并排平铺、自动换行,尽量在一屏内放下更多格 */
-.bookcase-desktop {
+/* 小组件自由布局区 */
+.widget-desktop {
   position: relative;
-  width: max-content;
-  min-width: 100%;
-  min-height: 600px;
+  width: 100%;
+  min-height: 240px;
 }
+
+/* 书架网格:响应式自动排列,不再绝对定位 */
+.shelf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px 20px;
+  padding: 20px 16px 40px;
+  align-items: start;
+}
+
 /* 一格书架 */
 .shelf-unit {
-  position: absolute;
-  width: 400px;
-  cursor: grab;
+  position: relative;
+  width: 100%;
+  min-width: 0;
   user-select: none;
-  touch-action: none;
-  z-index: 1;
+  cursor: grab;
+  transition: opacity 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
-.shelf-unit:active {
+.shelf-unit[draggable="true"]:active {
   cursor: grabbing;
-  z-index: 100;
+}
+.shelf-unit.drag-over-reorder {
+  opacity: 0.55;
+  transform: scale(0.98);
+  box-shadow: 0 0 0 2px var(--brass, #c9a86c);
+  border-radius: 8px;
 }
 /* 学科标题:挂在书的上方,清晰好读 */
 .shelf-tag {
@@ -754,18 +769,11 @@ h3 {
   font-size: 11px;
   color: var(--ink-faint);
 }
-/* 拖拽手柄:整条学科标题都是手柄,唯一点击书脊时不动 */
-.shelf-drag-handle {
-  display: none;
-}
 .shelf-tag {
   cursor: grab;
 }
 .shelf-tag:active {
   cursor: grabbing;
-}
-.shelf-unit {
-  cursor: default;
 }
 /* 分类重命名按钮:常驻可见(淡),悬停更清晰、铅笔轻微转动,层级高于悬停卡片始终可点 */
 .shelf-tag-rename {

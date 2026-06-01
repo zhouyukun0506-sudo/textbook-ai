@@ -3,7 +3,7 @@ import { join } from 'path'
 import { promises as fs } from 'fs'
 import { randomUUID } from 'crypto'
 import { IPC } from '../shared/ipc'
-import type { Book, ChatTurn, ChatSession, ChatStreamChunk, OutlineNode, OcrPlan, OcrPageResult, TextBlock, WeeklyStats, WidgetConfig, ShelfLayout } from '../shared/types'
+import type { Book, ChatTurn, ChatSession, ChatStreamChunk, OutlineNode, OcrPlan, OcrPageResult, TextBlock, WeeklyStats, WidgetConfig } from '../shared/types'
 import * as store from './store'
 import { getPublicConfig, setConfig, testProfile, getActiveProfile } from './config'
 import { parsePdf, buildChunks } from './pdf'
@@ -851,8 +851,8 @@ function registerIpc(): void {
   ipcMain.handle(IPC.saveWidgets, (_e, widgets: WidgetConfig[]) => store.saveWidgets(widgets))
 
   // ---- 书架布局 ----
-  ipcMain.handle(IPC.getShelfLayout, () => store.getShelfLayout())
-  ipcMain.handle(IPC.saveShelfLayout, (_e, layout: ShelfLayout[]) => store.saveShelfLayout(layout))
+  ipcMain.handle(IPC.getShelfOrder, () => store.getShelfOrder())
+  ipcMain.handle(IPC.saveShelfOrder, (_e, order: string[]) => store.saveShelfOrder(order))
   ipcMain.handle(IPC.updateBookSubject, async (_e, bookId: string, subject: string) => {
     await store.updateBookSubject(bookId, subject)
     // 触发刷新

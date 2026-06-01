@@ -41,9 +41,9 @@ export const IPC = {
   // 小组件系统
   getWidgets: 'widgets:get',
   saveWidgets: 'widgets:save',
-  // 书架布局
-  getShelfLayout: 'layout:get',
-  saveShelfLayout: 'layout:save',
+  // 书架排序
+  getShelfOrder: 'layout:getOrder',
+  saveShelfOrder: 'layout:saveOrder',
   updateBookSubject: 'books:updateSubject',
   getCustomShelves: 'shelves:get',
   saveCustomShelves: 'shelves:save',

@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { IPC } from '../shared/ipc'
-import type { ExposedApi, Book, ChatStreamChunk, WeeklyStats, WidgetConfig, ShelfLayout } from '../shared/types'
+import type { ExposedApi, Book, ChatStreamChunk, WeeklyStats, WidgetConfig, ShelfOrder } from '../shared/types'
 
 const api: ExposedApi = {
   listBooks: () => ipcRenderer.invoke(IPC.listBooks),
@@ -60,8 +60,8 @@ const api: ExposedApi = {
 
   getWidgets: () => ipcRenderer.invoke(IPC.getWidgets),
   saveWidgets: (widgets: WidgetConfig[]) => ipcRenderer.invoke(IPC.saveWidgets, widgets),
-  getShelfLayout: () => ipcRenderer.invoke(IPC.getShelfLayout),
-  saveShelfLayout: (layout: ShelfLayout[]) => ipcRenderer.invoke(IPC.saveShelfLayout, layout),
+  getShelfOrder: () => ipcRenderer.invoke(IPC.getShelfOrder),
+  saveShelfOrder: (order: ShelfOrder) => ipcRenderer.invoke(IPC.saveShelfOrder, order),
   updateBookSubject: (bookId: string, subject: string) => ipcRenderer.invoke(IPC.updateBookSubject, bookId, subject),
   getCustomShelves: () => ipcRenderer.invoke(IPC.getCustomShelves),
   saveCustomShelves: (shelves: string[]) => ipcRenderer.invoke(IPC.saveCustomShelves, shelves)

@@ -151,11 +151,9 @@ export interface WidgetConfig {
   y?: number
 }
 
-export interface ShelfLayout {
-  subject: string
-  x: number
-  y: number
-}
+/** 书架排序：学科名称的先后顺序，决定网格中的排列位置。
+ *  不再使用绝对坐标，书架在响应式网格中自动排列。 */
+export type ShelfOrder = string[]
 
 export type OcrMode = 'local' | 'cloud' | 'hybrid'
 export type Provider = 'openai' | 'anthropic'
@@ -286,8 +284,8 @@ export interface ExposedApi {
   saveWidgets: (widgets: WidgetConfig[]) => Promise<void>
 
   // 书架布局
-  getShelfLayout: () => Promise<ShelfLayout[]>
-  saveShelfLayout: (layout: ShelfLayout[]) => Promise<void>
+  getShelfOrder: () => Promise<string[]>
+  saveShelfOrder: (order: string[]) => Promise<void>
   updateBookSubject: (bookId: string, subject: string) => Promise<void>
   /** 自定义(可空)书架名单:即使没有书也显示,作为拖书归类的目标 */
   getCustomShelves: () => Promise<string[]>

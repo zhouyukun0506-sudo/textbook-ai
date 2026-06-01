@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
-import type { Book, ApiConfig, WeeklyStats, WidgetConfig, ShelfLayout } from '@shared/types'
+import type { Book, ApiConfig, WeeklyStats, WidgetConfig, ShelfOrder } from '@shared/types'
 import Library from './components/Library'
 import Reader from './components/Reader'
 import Settings from './components/Settings'
@@ -16,7 +16,7 @@ export default function App(): JSX.Element {
   const [organizing, setOrganizing] = useState(false)
   const [weeklyStats, setWeeklyStats] = useState<WeeklyStats[]>([])
   const [widgets, setWidgets] = useState<WidgetConfig[]>([])
-  const [layout, setLayout] = useState<ShelfLayout[]>([])
+  const [order, setOrder] = useState<string[]>([])
   // 用户手动建的空书架名单(即使没书也显示,作为拖书归类的落脚点)
   const [customShelves, setCustomShelves] = useState<string[]>([])
   // 番茄钟:App 级全局状态,主页小组件与阅读页共用同一个,切页面继续走(关 app 重置)
@@ -78,7 +78,7 @@ export default function App(): JSX.Element {
     void window.api.getApiConfig().then(setApiConfig)
     void window.api.getWeeklyStats().then(setWeeklyStats)
     void window.api.getWidgets().then(setWidgets)
-    void window.api.getShelfLayout().then(setLayout)
+    void window.api.getShelfOrder().then(setOrder)
     void window.api.getCustomShelves().then(setCustomShelves)
     const off = window.api.onBookProgress((book) => {
       setBooks((prev) => {
@@ -213,11 +213,11 @@ export default function App(): JSX.Element {
               organizing={organizing}
               weeklyStats={weeklyStats}
               widgets={widgets}
-              layout={layout}
+              order={order}
               customShelves={customShelves}
               pomodoro={pomodoro}
               onWidgetsChange={setWidgets}
-              onLayoutChange={setLayout}
+              onOrderChange={setOrder}
               onCustomShelvesChange={setCustomShelves}
               onOpen={(id) => setActiveBookId(id)}
               onImport={handleImport}

@@ -3,7 +3,7 @@
 import { app } from 'electron'
 import { promises as fs } from 'fs'
 import { join } from 'path'
-import type { Book, Chunk, ChatTurn, ChatSession, OutlineNode, PageKind, KnowledgeNode, WeeklyStats, WidgetConfig, ShelfLayout } from '../shared/types'
+import type { Book, Chunk, ChatTurn, ChatSession, OutlineNode, PageKind, KnowledgeNode, WeeklyStats, WidgetConfig } from '../shared/types'
 
 function dataDir(): string {
   return join(app.getPath('userData'), 'data')
@@ -290,17 +290,17 @@ export async function saveWidgets(widgets: WidgetConfig[]): Promise<void> {
   await writeJson(widgetsFile(), widgets)
 }
 
-// ---- 书架布局 ----
-function layoutFile(): string {
-  return join(dataDir(), 'layout.json')
+// ---- 书架排序 ----
+function orderFile(): string {
+  return join(dataDir(), 'shelf-order.json')
 }
 
-export async function getShelfLayout(): Promise<ShelfLayout[]> {
-  return readJson<ShelfLayout[]>(layoutFile(), [])
+export async function getShelfOrder(): Promise<string[]> {
+  return readJson<string[]>(orderFile(), [])
 }
 
-export async function saveShelfLayout(layout: ShelfLayout[]): Promise<void> {
-  await writeJson(layoutFile(), layout)
+export async function saveShelfOrder(order: string[]): Promise<void> {
+  await writeJson(orderFile(), order)
 }
 
 // ---- 自定义(可空)书架名单 ----
