@@ -42,5 +42,5 @@
            - uses: actions/upload-artifact@v4
              with:
                name: Windows-x64
-               path: dist-release/win-*/**/*.exe
+               path: dist-release/*setup.exe
                retention-days: 30
